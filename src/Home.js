@@ -32,12 +32,9 @@ export function Home(){
 
     useEffect(() => {
         handleMessage()
-    },[])
-
-    useEffect(()=>{
         setRemoveEven(odd)
         setRemoveOdd(even)
-    })
+    }, [])
     
     function handleEvenList(){
         return setShowEven(true)
@@ -46,8 +43,10 @@ export function Home(){
         return setShowOdd(true)
     }
     function handleRemoveOdd(index){
-        setRemoveOdd(()=>{
-            return odd.splice(index, 1)
+        let newOdd = [...odd]
+        newOdd.splice(index,1)
+        setOdd(()=>{
+            return [...newOdd]
         })
     }
     function handleRemoveEven(index){

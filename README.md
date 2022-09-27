@@ -4,6 +4,9 @@ In base al primo numero della frase risultata dall'API, aggiungetela automaticam
 Parte 2
 Per ogni item della lista aggiungere un bottone che cancella l'item
 
+Convertire l'esercizio di Odd e Even per gestire una lista di todo.
+Utilizzare l'api fornita nell'esercizio Odd e Even per ottenere delle frasi da inserire nella lista "ToDo" la quale conterrà tutti gli elementi che non sono ancora stati contrassegnati come completati. Ogni riga di questa lista avrà un bottone che chiamerai "Completa" che servirà a completare i task e aspostarli nella lista "Done". Entrambe le liste devono essere sempre in vista.
+
 
 
 # Getting Started with Create React App
