@@ -9,8 +9,6 @@ export function Home(){
     const [odd, setOdd] = useState([])
     const [showEven, setShowEven] = useState(false)
     const [showOdd, setShowOdd] = useState(false)
-    const [removeEven, setRemoveEven] = useState(even)
-    const [removeOdd, setRemoveOdd] = useState(odd)
     
     const number = message.substring(0,4)
     const pari = number%2===0
@@ -32,8 +30,6 @@ export function Home(){
 
     useEffect(() => {
         handleMessage()
-        setRemoveEven(odd)
-        setRemoveOdd(even)
     }, [])
     
     function handleEvenList(){
@@ -50,8 +46,10 @@ export function Home(){
         })
     }
     function handleRemoveEven(index){
-        setRemoveEven(()=>{
-            return even.splice(index, 1)
+        let newEven = [...even]
+        newEven.splice(index,1)
+        setEven(()=>{
+            return [...newEven]
         })
     }
 
