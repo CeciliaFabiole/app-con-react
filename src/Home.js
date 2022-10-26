@@ -1,69 +1,34 @@
-import React from "react";
-import { useEffect, useState } from 'react';
-import { Even } from "./Even";
-import { Odd } from './Odd';
+import { useState } from "react"
+import { Odd } from "./Odd"
+import { Even } from "./Even"
 
 export function Home(){
-    const[message, setMessage] = useState('')
-    const [even, setEven] = useState([])
-    const [odd, setOdd] = useState([])
-    const [showEven, setShowEven] = useState(false)
-    const [showOdd, setShowOdd] = useState(false)
-    
+    const [message, setMessage] = useState('')
+    const [listaPari, setListaPari] = useState([])
+    const [listaDispari, setListaDispari] = useState([])
+    const [showPari, setshowPari] = useState(false)
+    const [showDispari, setshowDispari] = useState(false)
+
     const number = message.substring(0,4)
     const pari = number%2===0
-    // const dispari = number%2===1
 
-    function handleMessage(){
+    function handleFetch() {
         fetch('http://numbersapi.com/random/math')
-        .then((response)=>response.text())
-        .then((text)=>setMessage(text))
+        .then(response=>response.text())
+        .then(text=>setMessage(text))
         setMessage(message)
-        if(pari) {
-            setEven(()=>{
-                return [...even, message]
-            })} else {
-            setOdd(()=>{
-                return [...odd, message]
-            })}
+        if(pari){
+            setListaPari([...listaPari, message])
+        } else {
+            setListaDispari([...listaDispari, message])
+        }
     }
-
-    useEffect(() => {
-        handleMessage()
-    }, [])
     
-    function handleEvenList(){
-        return setShowEven(true)
-    }
-    function handleOddList(){
-        return setShowOdd(true)
-    }
-    function handleRemoveOdd(index){
-        let newOdd = [...odd]
-        newOdd.splice(index,1)
-        setOdd(()=>{
-            return [...newOdd]
-        })
-    }
-    function handleRemoveEven(index){
-        let newEven = [...even]
-        newEven.splice(index,1)
-        setEven(()=>{
-            return [...newEven]
-        })
-    }
-
-    return (
+    return(
         <div>
-            <p>{message}</p>
-            <p>{number}</p>
-
-            <Even even={showEven && even.map((item,index)=><li key={index+item}>{item}<button onClick={()=>handleRemoveEven(index)}>x</button></li>)}/>
-            <Odd odd={showOdd && odd.map((item,index)=><li key={index+item}>{item}<button onClick={()=>handleRemoveOdd(index)}>x</button></li>)}/>
-            
-            <button onClick={()=>handleMessage()}>Ottieni</button>
-            <button onClick={()=>handleOddList()}>Odd</button>
-            <button onClick={()=>handleEvenList()}>Even</button>
+            <Even listaPari={listaPari} showPari={showPari} setListaPari={setListaPari} setshowPari={setshowPari}/>
+            <Odd listaDispari={listaDispari} showDispari={showDispari} setListaDispari={setListaDispari} setshowDispari={setshowDispari}/>
+            <button onClick={()=>handleFetch()}>Ottieni</button>
         </div>
     )
 }

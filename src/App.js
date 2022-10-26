@@ -5,8 +5,9 @@ import { Home } from "./Home";
 export function App(){
     return(
         <div>
-            <TodoList/>
-            <Home/>
+           <Home/>
+           <hr/>
+           <TodoList/>
         </div>
     )
 }

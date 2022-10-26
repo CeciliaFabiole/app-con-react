@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export function TodoList(){
     const [newTodo, setNewTodo] = useState('')
@@ -16,10 +16,6 @@ export function TodoList(){
         })
         
     }
-
-    useEffect(() => {
-        handleResponse()
-    }, [])
 
     function handleCompleteTodo(index){
         let list = [...uncompletedList]
@@ -41,11 +37,11 @@ export function TodoList(){
         
         return(
             <div>
-                <button onClick={()=>handleResponse()}>Ottieni</button>
                 <h2>Uncompleted</h2>
                 <ul>{uncompletedList.map((uncompleted, index) => <li key={index}>{uncompleted}<button onClick={()=>handleCompleteTodo(index)}>COMPLETA</button></li>)}</ul>
                 <h2>Completed</h2>
                 <ul>{doneList.map((completed, index) => <li key={index}>{completed}<button onClick={()=>handleRemoveTodo(index)}>X</button></li>)}</ul>
+                <button onClick={()=>handleResponse()}>Ottieni</button>
             </div>
         )
 }
